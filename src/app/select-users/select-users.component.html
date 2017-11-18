@@ -1,0 +1,7 @@
+<input [name]="name" class="form-control" [placeholder]="placeholder" type="text" required [(ngModel)]="userName" (ngModelChange)="onNameChange($event)">
+
+<ul class="options-users" *ngIf="users.length">
+    <li #li *ngFor="let user of users">
+        <a class="user-select" href="#" (click)="userOnClick(user)">{{user.name}}</a>
+    </li>
+</ul>

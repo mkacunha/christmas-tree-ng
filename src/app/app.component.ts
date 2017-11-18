@@ -1,43 +1,55 @@
 import { AppComponentService } from './app.component.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { DomSanitizer, SafeHtml } from "@angular/platform-browser";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { FormControl } from '@angular/forms';
 
 import { User } from './user';
 import { Message } from './message';
+import { Select2OptionData } from 'ng2-select2/ng2-select2.interface';
+import { Select2Component } from 'ng2-select2/ng2-select2.component';
+
+declare var $: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  host: { '(window:keydown)': 'hotkeys($event)' }
 })
 export class AppComponent implements OnInit {
 
-  private users: User[] = [];
+  private userFrom: User;
+  private userTo: User;
+  private message: string = '';
 
-  public userFromControl: FormControl;
-  public userToControl: FormControl;
-  private message: Message = new Message();
+  private error: string = '';
+  private success: string = '';
 
-  constructor(private service: AppComponentService, private builder: FormBuilder, private _sanitizer: DomSanitizer) { }
-
-  ngOnInit() {
-    this.service.findAllUsers().subscribe(users => this.users = users);
-    this.userFromControl = new FormControl('')
-    this.userToControl = new FormControl('')
+  constructor(private service: AppComponentService) {
   }
 
+  ngOnInit() {
+  }
 
-  private autocompleListFormatter = (data: any): SafeHtml => {
-    let html = `<span>${data.name}</span>`;
-    return this._sanitizer.bypassSecurityTrustHtml(html);
+  private userFromSelected(user: User) {
+    this.userFrom = user;
+  }
+
+  private userToSelected(user: User) {
+    this.userTo = user;
   }
 
   private onClickSend() {
-    this.message.from = this.userFromControl.value;
-    this.message.to = this.userToControl.value;
-    console.log(this.message);
-    this.service.save(this.message).subscribe(message => console.log(message), error => console.log(error));
+    let message: Message = new Message(this.userFrom, this.userTo, this.message);
+    this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
   }
 
+  hotkeys(event) {
+    this.dimisAlert();
+  }
+
+  private dimisAlert() {
+    this.error = '';
+    this.success = '';
+  }
 }
