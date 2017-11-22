@@ -5,8 +5,6 @@ import { FormControl } from '@angular/forms';
 
 import { User } from './user';
 import { Message } from './message';
-import { Select2OptionData } from 'ng2-select2/ng2-select2.interface';
-import { Select2Component } from 'ng2-select2/ng2-select2.component';
 
 declare var $: any;
 
