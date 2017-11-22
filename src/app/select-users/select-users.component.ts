@@ -15,8 +15,8 @@ export class SelectUsersComponent implements OnInit {
   @Input() placeholder: string = '';
   @Output() selected: EventEmitter<User> = new EventEmitter();
 
-  private users: User[] = [];
-  private userName: string = '';
+  users: User[] = [];
+  userName: string = '';
   private isSelected: boolean = false;
 
   private inputSelect;
@@ -30,7 +30,7 @@ export class SelectUsersComponent implements OnInit {
 
   }
 
-  private onNameChange(name) {
+  onNameChange(name) {
     if (name.length >= 3) {
       this.service
         .findUsersByNameContains(name)
@@ -47,7 +47,7 @@ export class SelectUsersComponent implements OnInit {
     }
   }
 
-  private userOnClick(user: User) {
+  userOnClick(user: User) {
     this.selected.next(user);
     this.userName = user.name;
     this.users = [];
@@ -79,7 +79,7 @@ export class SelectUsersComponent implements OnInit {
     }
   }
 
-  private isInputSelect(): boolean {
+  isInputSelect(): boolean {
     return document.activeElement &&
       document.activeElement.attributes.getNamedItem('ng-reflect-name') != undefined &&
       document.activeElement.attributes.getNamedItem('ng-reflect-name').value === this.name;

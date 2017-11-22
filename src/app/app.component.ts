@@ -20,10 +20,10 @@ export class AppComponent implements OnInit {
 
   private userFrom: User;
   private userTo: User;
-  private message: string = '';
+  message: string = '';
 
-  private error: string = '';
-  private success: string = '';
+  error: string = '';
+  success: string = '';
 
   constructor(private service: AppComponentService) {
   }
@@ -31,15 +31,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  private userFromSelected(user: User) {
+  userFromSelected(user: User) {
     this.userFrom = user;
   }
 
-  private userToSelected(user: User) {
+  userToSelected(user: User) {
     this.userTo = user;
   }
 
-  private onClickSend() {
+  onClickSend() {
     let message: Message = new Message(this.userFrom, this.userTo, this.message);
     this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
   }
