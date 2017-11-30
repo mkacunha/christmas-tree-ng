@@ -56,7 +56,7 @@ export class SelectUsersComponent implements OnInit {
 
   hotkeys(event) {
     if (this.users.length > 0 && (event.code === 'ArrowDown' || event.code === 'ArrowUp')) {
-      event.preventDefault();      
+      event.preventDefault();
       if (this.isInputSelect()) {
         this.inputSelect = document.activeElement;
         this.indexSelected = 0;

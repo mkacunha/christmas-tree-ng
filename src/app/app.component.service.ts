@@ -24,7 +24,7 @@ export class AppComponentService {
   }
 
   findUsersByNameContains(name: string) {
-    return this.http.get(`${environment.api}/users/contains/${name}`)
+    return this.http.get(`${environment.api}/messages/by-name?name=${name}`)
       .map(response => response.json() as User[]);
   }
 }
