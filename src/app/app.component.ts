@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
   }
 
   onClickSend() {
-    let message: Message = new Message(this.userFrom, this.userTo, this.message);
+    const message: Message = new Message(this.userFrom, this.userTo, this.message);
     this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
   }
 
