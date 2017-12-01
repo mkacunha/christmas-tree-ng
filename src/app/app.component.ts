@@ -16,8 +16,8 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-  private userFrom: User;
   private userTo: User;
+  private nameFrom: string = '';;
   message: string = '';
 
   error: string = '';
@@ -29,16 +29,12 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  userFromSelected(user: User) {
-    this.userFrom = user;
-  }
-
   userToSelected(user: User) {
     this.userTo = user;
   }
 
   onClickSend() {
-    const message: Message = new Message(this.userFrom, this.userTo, this.message);
+    const message: Message = new Message(this.nameFrom, this.userTo, this.message);
     this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
   }
 

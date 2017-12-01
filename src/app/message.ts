@@ -2,10 +2,10 @@ import { User } from './user';
 
 export class Message {
 
-    constructor(private _from: User, private _to: User, private _text: string) { }
+    constructor(private _nameFrom: string, private _to: User, private _text: string) { }
 
-    get from(): User {
-        return this._from;
+    get nameFrom(): string {
+        return this._nameFrom;
     }
 
     get to(): User {
@@ -18,7 +18,7 @@ export class Message {
 
     toJson(): any {
         return {
-            from: this._from,
+            nameFrom: this._nameFrom,
             to: this._to,
             text: this._text
         }

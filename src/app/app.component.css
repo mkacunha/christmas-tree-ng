@@ -27,8 +27,3 @@ div.container {
 :-ms-input-placeholder {
     font-style: italic;
 }
-
-body {
-    background-image: url("./image/image.jpg");
-    background-color: #cccccc;
- }
