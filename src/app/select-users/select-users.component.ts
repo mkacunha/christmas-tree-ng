@@ -85,4 +85,8 @@ export class SelectUsersComponent implements OnInit {
       document.activeElement.attributes.getNamedItem('ng-reflect-name').value === this.name;
   }
 
+  clear() {
+    this.userName = '';
+  }
+
 }

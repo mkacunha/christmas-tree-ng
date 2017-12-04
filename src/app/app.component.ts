@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 
 import { User } from './user';
 import { Message } from './message';
+import { SelectUsersComponent } from './select-users/select-users.component';
 
 declare var $: any;
 
@@ -16,12 +17,14 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
 
-  private userTo: User;
-  private nameFrom: string = '';;
+  userTo: User;
+  nameFrom: string = '';
   message: string = '';
 
   error: string = '';
   success: string = '';
+
+  @ViewChild('userTo') selectUserTo: SelectUsersComponent;
 
   constructor(private service: AppComponentService) {
   }
@@ -36,6 +39,12 @@ export class AppComponent implements OnInit {
   onClickSend() {
     const message: Message = new Message(this.nameFrom, this.userTo, this.message);
     this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
+  }
+
+  clearFields() {
+    this.userTo = new User();
+    this.message = '';
+    this.selectUserTo.clear();
   }
 
   hotkeys(event) {

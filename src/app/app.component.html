@@ -25,14 +25,15 @@
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 form-group">
-            <select-users name="user-to" placeholder="Para" (selected)="userToSelected($event)"></select-users>
+            <select-users #userTo name="user-to" placeholder="Para" (selected)="userToSelected($event)"></select-users>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
-            <textarea class="form-group form-control" [(ngModel)]="message" name="text" cols="30" rows="10" placeholder="Seu Feddback :) :)"></textarea>
+            <textarea class="form-group form-control" [(ngModel)]="message" name="text" cols="30" rows="10" placeholder="Seu Feedback :) :)"></textarea>
             <button style="background-color:#2F750E;color:whitesmoke;"class="btn" type="submit" (click)="onClickSend()">Enviar</button>
+            <button style="background-color:#FBA709;color:black;" class="btn btn-default" type="button" (click)="clearFields()">Limpar</button>
         </div>
     </div>
 </div>
