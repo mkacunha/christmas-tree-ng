@@ -1,39 +1,33 @@
 <div class="container">
 
-    <div style="height: 75px">
-        <div *ngIf="error.length" class="alert alert-danger" role="alert">
+    <div style="height: 30px;" class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
+        <div style="color: rgb(160, 5, 5); text-align: center" class="alert-message-error" *ngIf="error.length" role="alert">
             <strong>Atenção: </strong> {{error}}
-            <button type="button" class="close" (click)="dimisAlert()">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
 
-        <div *ngIf="success.length" class="alert alert-success" role="alert">
+        <div style="color: rgb(3, 97, 3);text-align: center;" *ngIf="success.length" role="alert">
             <strong>Parabéns: </strong> Seu feedback foi enviado com sucesso.
-            <button type="button" class="close" (click)="dimisAlert()">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 form-group">
-                <input type="text" class="form-control" [(ngModel)]="nameFrom" placeholder="De"/>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 form-group">
-            <select-users #userTo name="user-to" placeholder="Para" (selected)="userToSelected($event)"></select-users>
+            <label for="from">De</label>
+            <input id="from" type="text" class="form-control" [(ngModel)]="nameFrom" placeholder="Informe seu nome aqui" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 form-group">
+            <label>Para</label>
+            <select-users #userTo name="user-to" placeholder="Comece a digitar para buscar os destinatários" (selected)="userToSelected($event)"></select-users>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
             <textarea class="form-group form-control" [(ngModel)]="message" name="text" cols="30" rows="10" placeholder="Seu Feedback :) :)"></textarea>
-            <button style="background-color:#2F750E;color:whitesmoke;"class="btn" type="submit" (click)="onClickSend()">Enviar</button>
-            <button style="background-color:#FBA709;color:black;" class="btn btn-default" type="button" (click)="clearFields()">Limpar</button>
+            <button style="background-color:#2F750E;color:whitesmoke;" class="btn" type="submit" (click)="onClickSend()">Enviar</button>
         </div>
     </div>
 </div>

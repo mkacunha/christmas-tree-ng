@@ -11,8 +11,8 @@ import { SelectUsersComponent } from './select-users/select-users.component';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/timer';
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 @NgModule({
   declarations: [

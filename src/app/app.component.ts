@@ -37,12 +37,24 @@ export class AppComponent implements OnInit {
   }
 
   onClickSend() {
+    this.dimisAlert();
+
+    if (!this.userTo) {
+      this.error = 'Destinatário informado inválido. Selecione um nome na lista';
+      return;
+    }
+
     const message: Message = new Message(this.nameFrom, this.userTo, this.message);
-    this.service.save(message).subscribe(() => this.success = 'success', error => this.error = error.text());
+    this.service.save(message).subscribe(
+      () => this.success = 'success',
+      error => this.error = error.text(),
+      () => this.clearFields()
+    );
   }
 
   clearFields() {
     this.userTo = new User();
+    this.nameFrom = '';
     this.message = '';
     this.selectUserTo.clear();
   }

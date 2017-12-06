@@ -31,7 +31,7 @@ export class SelectUsersComponent implements OnInit {
   }
 
   onNameChange(name) {
-    if (name.length >= 3) {
+    if (name.length >= 2) {
       this.service
         .findUsersByNameContains(name)
         .debounceTime(1000)
